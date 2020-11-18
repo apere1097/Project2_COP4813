@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/results.css">
+</head>
+<body>
+
+        {% if response[0] == 'list' %}
+
+            <div class="date">
+
+            {% if response[4] == 'date' %}
+
+                <h1> Books based on {{ response[5] }}</h1>
+
+                {% for i in data['results']['books'] %}
+
+                <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                <img src="{{ i['book_image'] }}" alt="Book cover for {{ i['title'] }}">
+                <h1> {{ i['title'] }} </h1>
+                <p>
+                    <b>Description </b> {{ i['description'] }} <br>
+                    <b>Author </b> {{ i['author'] }} <br>
+                    <b>Published by </b> {{ i['publisher'] }} <br>
+                </p>
+
+                <br>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="history">
+
+            {% elif response[4] == 'history' %}
+
+                <h1> Best sellers in history </h1>
+
+                <br>
+
+                {% for i in data['results'] %}
+
+                <h2> {{ i['title'] }} </h2>
+                <p>
+                    <b>Description </b> {{ i['description'] }} <br>
+                    <b>Author</b> {{ i['author'] }} <br>
+                    <b>Published by</b> {{ i['publisher'] }} <br>
+                    {% if i['reviews'][0]['sunday_review_link'] == '' %}
+                        <b>No Review</b>
+                    {% else %}
+                        <a href="{{ i['reviews'][0]['sunday_review_link'] }}">Review</a>
+                    {% endif %}
+                </p>
+
+                <br>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="overview">
+
+            {% elif response[4] == 'overview' %}
+
+                <h1> Overview of the best sellers </h1>
+
+                {% if response[6] == 'CPEF' %}
+
+                    <h2>Combined Print and E-Book Fiction</h2>
+
+                    {% for i in data['results']['lists'][0]['books'] %}
+
+                    <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                    <img src="{{ i['book_image'] }}" alt="Book cover for {{ i['title'] }}">
+                    <h3> {{ i['title'] }} </h3>
+                    <p>
+                        <b>Description </b> {{ i['description'] }} <br>
+                        <b>Author</b> {{ i['author'] }}<br>
+                        <b>Published by</b> {{ i['publisher'] }} <br>
+                        <b> Purchase book on </b> <a href="{{ i['buy_links'][0]['url'] }}">Amazon</a>
+                    </p>
+
+                    <br>
+
+                    {% endfor %}
+
+                {% elif response[6] == 'CPENF' %}
+
+                    <h2>Combined Print and E-Book Non-Fiction</h2>
+
+                    {% for i in data['results']['lists'][1]['books'] %}
+
+                    <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                    <img src="{{ i['book_image'] }}" alt="{{ i['title'] }}">
+                    <h3> {{ i['title'] }} </h3>
+                    <p>
+                        <b>Description </b> {{ i['description'] }} <br>
+                        <b>Author</b> {{ i['author'] }}<br>
+                        <b>Published by</b> {{ i['publisher'] }} <br>
+                        <b> Purchase book on </b> <a href="{{ i['buy_links'][0]['url'] }}">Amazon</a>
+                    </p>
+
+                    <br>
+
+                    {% endfor %}
+
+                {% elif response[6] == 'HF'%}
+
+                    <h2>Hardcover Fiction</h2>
+
+                    {% for i in data['results']['lists'][2]['books'] %}
+
+                    <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                    <img src="{{ i['book_image'] }}" alt="Book cover for {{ i['title'] }}">
+                    <h3> {{ i['title'] }} </h3>
+                    <p>
+                        <b>Description </b> {{ i['description'] }} <br>
+                        <b>Author</b> {{ i['author'] }}<br>
+                        <b>Published by</b> {{ i['publisher'] }} <br>
+                        <b> Purchase book on </b> <a href="{{ i['buy_links'][0]['url'] }}">Amazon</a>
+                    </p>
+
+                    <br>
+
+                    {% endfor %}
+
+                {% elif response[6] == 'HNF'%}
+
+                    <h2>Hardcover Non-Fiction</h2>
+
+                    {% for i in data['results']['lists'][3]['books'] %}
+
+                    <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                    <img src="{{ i['book_image'] }}" alt="Book cover for {{ i['title'] }}">
+                    <h3> {{ i['title'] }} </h3>
+                    <p>
+                        <b>Description </b> {{ i['description'] }} <br>
+                        <b>Author</b> {{ i['author'] }}<br>
+                        <b>Published by</b> {{ i['publisher'] }} <br>
+                        <b> Purchase book on </b> <a href="{{ i['buy_links'][0]['url'] }}">Amazon</a>
+                    </p>
+
+                    <br>
+
+                    {% endfor %}
+
+                {% elif response[6] == 'AHM' %}
+
+                    <h2>Advice How-To and Miscellaneous</h2>
+
+                    {% for i in data['results']['lists'][6]['books'] %}
+
+                    <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                    <img src="{{ i['book_image'] }}" alt="{{ i['title'] }}">
+                    <h3> {{ i['title'] }} </h3>
+                    <p>
+                        {% if i['description'] == '' %}
+                        <b>No Description</b> <br>
+                        {% else %}
+                        <b>Description </b> {{ i['description'] }} <br>
+                        {% endif %}
+                        <b>Author</b> {{ i['author'] }}<br>
+                        <b>Published by</b> {{ i['publisher'] }} <br>
+                        <b> Purchase book on </b> <a href="{{ i['buy_links'][0]['url'] }}">Amazon</a>
+                    </p>
+
+                    <br>
+
+                    {% endfor %}
+
+                {% elif response[6] == 'SB' %}
+
+                    <h2>Series Books</h2>
+
+                    {% for i in data['results']['lists'][9]['books'] %}
+
+                    <h2> <b>Rank </b> {{ i['rank'] }} </h2>
+                    <img src="{{ i['book_image'] }}" alt="{{ i['title'] }}">
+                    <h3> {{ i['title'] }} </h3>
+                    <p>
+                        {% if i['description'] == '' %}
+                        <b>No Description</b> <br>
+                        {% else %}
+                        <b>Description </b> {{ i['description'] }} <br>
+                        {% endif %}
+                        <b>Author</b> {{ i['author'] }}<br>
+                        <b>Published by</b> {{ i['publisher'] }} <br>
+                        <b> Purchase book on </b> <a href="{{ i['buy_links'][0]['url'] }}">Amazon</a>
+                    </p>
+
+                    <br>
+
+                    {% endfor %}
+
+                {% elif response[6] == '' %}
+
+                    <div class="missing_info">
+                        <p> You did not select an option in the type of book for overview </p>
+                    </div>
+                {% endif%}
+
+            </div>
+
+            <div class="blank_selection">
+                {% elif response[4] == '' %}
+
+                    <h2>You did not select an option for the type of book in Best Sellers List </h2>
+
+                {% endif %}
+            </div>
+
+
+        {% elif response[0] == 'reviews' %}
+
+            <div class="review">
+
+                <h1> You selected book reviews </h1>
+
+                {% if data['status'] == 'ERROR' %}
+
+                <div class="errors">
+                    <h2> Please review the information you entered in Book Review Options </h2>
+                </div>
+
+            {% else %}
+
+                {% for i in data['results'] %}
+
+                <h3> {{ i['book_title'] }} </h3>
+                <p>
+                    {% if i['summary'] == '' %}
+                        <b>No Summary</b> <br>
+                    {% else %}
+                        <b>Summary </b> {{ i['summary'] }} <br>
+                    {% endif %}
+                    <b>Author</b> {{ i['book_author'] }} <br>
+                    <b>Published on</b> {{ i['publication_dt'] }} <br>
+                    <b>Article by</b> {{ i['byline'] }} <br>
+                    <a href="{{ i['url'] }}">Article link</a>
+                </p>
+
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+</body>
+</html>

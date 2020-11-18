@@ -1,0 +1,21 @@
+.date, .history,
+.overview, .review{
+    text-align: center;
+}
+.date img, .overview img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 300px;
+}
+.missing_info p{
+    color: red;
+    font-size: 50px;
+    margin-top: 225px;
+}
+.blank_selection p{
+    color: red;
+    font-size: 50px;
+    margin-top: 225px;
+}

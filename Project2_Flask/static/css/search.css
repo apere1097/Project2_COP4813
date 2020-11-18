@@ -1,0 +1,14 @@
+h1{
+    text-align: center;
+}
+.topic, .type_of_book,
+.overview, .author,
+.title, .isbn, .date{
+    margin-left: 613px;
+}
+h3{
+    margin-left: 613px;
+}
+.search{
+    text-align: center;
+}

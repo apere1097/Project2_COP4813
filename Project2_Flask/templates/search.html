@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/search.css">
+</head>
+<body>
+
+    <h1> Project 2 Book Review API </h1>
+
+    <form method="post" action="" name="sample">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+
+        <h3>Topic Selection</h3>
+
+        <div class="topic">
+            <p>
+                Select a topic
+                {{ form.topic_selection(style="list-style:none") }}
+            </p>
+        </div>
+
+        <h3>Best Sellers Options</h3>
+        <div class="type_of_book">
+             <p>
+                Select the type of books for best sellers list <br>
+                {{ form.option() }}
+            </p>
+        </div>
+
+        <div class="date">
+            <p>
+                Date when book was published <br>
+                {{ form.date() }}
+            </p>
+        </div>
+
+         <div class="overview">
+             <p>
+                Type of book for overview <br>
+                {{ form.overview_type() }}
+            </p>
+         </div>
+
+        <h3>Book Review Options</h3>
+
+        <div class="author">
+            <p>
+                Enter author's name <br>
+                {{ form.author() }}
+            </p>
+        </div>
+
+        <div class="title">
+            <p>
+                Enter the book's title <br>
+                {{ form.title() }}
+            </p>
+        </div>
+
+        <div class="isbn">
+            <p>
+                Enter the book's international standard number (ISBN) <br>
+                {{ form.isbn() }}
+            </p>
+        </div>
+
+        <div class="search">
+            <p>
+                {{ form.search() }}
+            </p>
+        </div>
+    </form>
+
+</body>
+</html>
